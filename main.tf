@@ -17,14 +17,7 @@ resource "aws_security_group" "chapter4_demo" {
   vpc_id      = aws_vpc.chapter4_demo.id
 
   ingress = []
-
-  egress {
-    description = "Allow outbound HTTPS for normal managed baseline"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  egress  = []
 
   tags = {
     Name        = "chapter4-drift-demo-${var.test_id}"
