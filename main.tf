@@ -16,7 +16,13 @@ resource "aws_security_group" "chapter4_demo" {
   description = "Chapter 4 drift demo: expected no inbound SSH from the internet"
   vpc_id      = aws_vpc.chapter4_demo.id
 
-  ingress = []
+  ingress {
+    description = "Chapter 4 intentional drift"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     description = "Allow outbound HTTPS for normal managed baseline"
